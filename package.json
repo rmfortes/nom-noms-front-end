@@ -1,0 +1,23 @@
+{
+  "name": "nom-noms-front-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmfortes/nom-noms-front-end.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rmfortes/nom-noms-front-end/issues"
+  },
+  "homepage": "https://github.com/rmfortes/nom-noms-front-end#readme",
+  "dependencies": {
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2"
+  }
+}
