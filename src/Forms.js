@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./Forms.css";
 
 class Forms extends Component {
@@ -9,60 +10,62 @@ class Forms extends Component {
       username: "",
       password: "",
     };
-    this.usernameLogin = this.usernameLogin.bind(this);
-    this.passwordLogin = this.passwordLogin.bind(this);
   }
 
-  usernameLogin = e => {
+  usernameLogin = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
-    this.setState({
-      username: e.target.username,
-    });
-
-    //this.setState { username: e.target.value}
+    if (e.target.type === "text") {
+      this.setState({
+        username: e.target.value,
+      });
+    }
   };
 
-  passwordLogin = e => {
+  passwordLogin = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
-    this.setState({
-      password: e.target.password,
-    });
+    if (e.target.type === "text") {
+      this.setState({
+        password: e.target.value,
+      });
+    }
   };
-  
-  handleSubmit = e => {
-    e.preventDefault();
-    console.log(e.target.value);
-    let URL = `http://localhost:4000/user`;
-    fetch(URL)
-      .then(res => res.json())
-      .then(res => console.log(res));
 
-    //fetch here
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("hello");
+    let URL = `https://nom-noms-api.herokuapp.com/user`;
+    fetch(URL, {
+      method: "GET",
+      body: JSON.stringify(this.state),
+      headers: { "Content-type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
   };
+
   render() {
     return (
       <div>
-        <form className={`forms-${this.props.type}`}>
+        <form className={`forms-${this.props.type}`}
+        onSubmit={this.handleSubmit}>
           {" "}
           <input
             type="text"
             placeholder="Username"
-            value={this.state.username}
+
             onChange={this.usernameLogin}
           ></input>
           <input
             type="text"
             placeholder="Password"
-            value={this.state.password}
+
             onChange={this.passwordLogin}
           ></input>
-          <input
-            onClick={this.handleSubmit}
+          <Link to="/user"><input
+            onSubmit={this.handleSubmit}
             type="Submit"
             placeholder="submit"
-          ></input>
+          ></input></Link>
         </form>
       </div>
     );

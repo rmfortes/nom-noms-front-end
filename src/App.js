@@ -11,8 +11,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: "",
+      Username: "",
+      Password: "",
     };
   }
 
@@ -22,8 +22,7 @@ class App extends React.Component {
         <div className="App">
           <Header />
           <div className="login">
-            {/* <Link to="/users">{Login}</Link> */}
-
+            <Route path="/" exact component={Forms} />
             <Route path="/" exact component={CreateUser} />
 
             <Route

@@ -5,8 +5,8 @@ class CreateUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: "",
+      Username: "",
+      Password: "",
     };
   }
 
@@ -17,7 +17,6 @@ class CreateUser extends Component {
         username: e.target.value,
       });
     }
- 
   };
 
   passwordCreated = (e) => {
@@ -27,29 +26,28 @@ class CreateUser extends Component {
         password: e.target.value,
       });
     }
-  
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('hello')
+    console.log("hello");
     let URL = `https://nom-noms-api.herokuapp.com/user`;
     fetch(URL, {
       method: "POST",
       body: JSON.stringify(this.state),
       headers: { "Content-type": "application/json" },
-      
     })
-      .then(res => res.json())
-      .then(res => console.log(res));
-      
+      .then((res) => res.json())
+      .then((res) => console.log(res));
   };
-
 
   render() {
     return (
       <div>
-        <form className={`forms-${this.props.type}`}onSubmit={this.handleSubmit}>
+        <form
+          className={`forms-${this.props.type}`}
+          onSubmit={this.handleSubmit}
+        >
           {" "}
           <input
             type="text"
@@ -68,7 +66,7 @@ class CreateUser extends Component {
               placeholder="submit"
             ></input>
           </Link>
-        </form >
+        </form>
       </div>
     );
   }
