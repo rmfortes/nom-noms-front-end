@@ -6,7 +6,7 @@ import Forms from "./Forms.js";
 import CreateUser from "./CreateUser.js";
 import Login from "./Login";
 import DummyComponent from "./DummyComponent";
-import Body from './Body';
+import Body from "./Body";
 
 class App extends React.Component {
   constructor(props) {
@@ -28,20 +28,23 @@ class App extends React.Component {
           <Header />
           <div className="login">
             <Link to="/users">{Login}</Link>
-            <Route path="/" 
-              render={routerProps => 
-              <Login addUser={this.addUser}
-            {...routerProps}
-          {...this.state} />} />
-            
-            
-            
+            {/* <Route
+              path="/"
+              render={(routerProps) => (
+                <Login
+                  addUser={this.addUser}
+                  {...routerProps}
+                  {...this.state}
+                />
+              )} */}
 
-           
-            <Route path="/" component={DummyComponent} />
-            <Route path="/user" render={routerProps => <Body addUser={this.addUser}
-            {...routerProps}
-            {...this.state}/>}
+                <Route path="/" exact component={Login}/>
+                <Route path="/" exact component={DummyComponent}/>
+            <Route
+              path="/user"
+              render={(routerProps) => (
+                <Body addUser={this.addUser} {...routerProps} {...this.state} />
+              )}
             />
           </div>
         </div>
