@@ -13,14 +13,14 @@ button {
 }
 
 .button-submit {
-  background-color: #33a0ff;
+  background-color: green;
   color: white;
   height: 25px;
   width: 125px;
 }
 
 .button-favorites {
-  background-color: #33a0ff;
+  background-color: red;
   color: white;
   height: 25px;
   width: 150px;

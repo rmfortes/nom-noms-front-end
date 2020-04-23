@@ -5,7 +5,6 @@ import Forms from "./Forms.js";
 import CreateUser from "./CreateUser.js";
 
 storiesOf("Forms", module)
-  .add("Username Login", () => <Forms type="text" />)
-  .add("Create Username", () => (
-    <CreateUser type="text" placeholder="Create Username" />
-  ));
+  .add("Username Login", () => <Forms type="text" placeholder="Login" />)
+  .add("Create Username", ()=> (<CreateUser type="text" placeholder="Create Username" />
+));

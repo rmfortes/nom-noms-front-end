@@ -1,16 +1,33 @@
 import React from "react";
 import "./Buttons.css";
+import Forms from "./Forms";
 
-const Button = props => {
+const Buttons = props => {
   let classList = "";
 
   let types = ["login", "submit", "favorites"];
+
+  let onSubmit = () => {
+    console.log("I've been clicked!");
+  }
 
   if (types.includes(props.type)) {
     classList += ` button-${props.type}`;
   }
 
-  return <button className={classList}>{props.label}</button>;
+  return <button className={classList} onClick={props.onClick}>{props.label}</button>;
+
+
 };
 
-export default Button;
+export default Buttons;
+
+// function handleSubmit(e) {
+//   e.preventDefault()
+//   return (
+//   <Router>
+//   <Route path="/" exact component={Body}>
+
+//   </Route>
+//   </Router>
+//   )}

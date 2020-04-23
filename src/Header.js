@@ -6,6 +6,7 @@ function Header() {
     <div>
       <header className="header">
           <p>NomNoms</p>
+          <button>"submit"</button>
       </header>
     </div>
   );

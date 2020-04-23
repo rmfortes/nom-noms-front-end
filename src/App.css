@@ -1,8 +1,6 @@
-/* .App {
-  text-align: center;
-  width: 100vw;
-  height: 100vh;
-} */
+.login {
+  margin: auto;
+}
 
 .header {
   border-bottom: 1px solid red;
