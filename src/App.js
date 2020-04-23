@@ -4,29 +4,60 @@ import "./App.css";
 import Header from "./Header.js";
 import Forms from "./Forms.js";
 import CreateUser from "./CreateUser.js";
-import Buttons from "./Buttons.js";
+
 import Body from "./Body.js";
 
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Header />
-        <div className="login">
-          <Forms />
+class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-          <Route path="/" exact component={Body}>
-            <Buttons label="Login" type="login" />
-          </Route>
+    this.state = {
+      users: [],
+    };
 
-          <CreateUser />
-          <Route path="/user" exact component={Body}>
-            <Buttons label="Submit" type="submit" />
-          </Route>
+    this.createUser = this.createUser.bind(this);
+  }
+
+  createUser(users) {
+    this.setState({ users: users });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.setState({ users: 'hellohello' })
+    console.log("I've been submitted");
+  };
+
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Header />
+          <div className="login">
+
+            <Route
+              path="/"
+              render={(routerProps) => <Forms onSubmit={this.handleSubmit}
+              {...routerProps}
+              {...this.state} />}
+              exact
+              component={Body}>
+            </Route>
+
+            <Route 
+              path="/users"
+              render={(routerProps) => <CreateUser onSubmit={this.handleSubmit}
+              {...routerProps}
+              {...this.state} />}
+               exact component={Body} 
+               />
+
+            {/* <Body /> */}
+          </div>
         </div>
-      </div>
-    </Router>
-  );
+      </Router>
+    );
+  }
 }
 
 export default App;
