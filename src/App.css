@@ -14,24 +14,29 @@ p {
 }
 
 .body {
-height: 100vh;
+
 border: solid red;
 }
 
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px
+}
+
 .searchBar {
-  margin: auto;
-  width: 90vw;
-  height: 5vw;
+  width: fit-content;
+  height: fit-content;
   margin-top: 10px;
   display: flex;
-  align-items: space-between;
   border: solid red;
 }
 
-.results {
+.recipes {
   margin: auto;
-  width: 90vw;
-  height: 95vw;
+  height: 75vh;
+  width: fit-content;
   margin-top: 10px;
   border: solid red;
 }

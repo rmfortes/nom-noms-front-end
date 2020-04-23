@@ -1,23 +1,10 @@
 import React, { Component } from "react";
+import FavoritesDummy from "./FavoritesDummy.js"
 
 class Body extends Component {
   componentDidMount () {
-    // const url=//our url here
-    
-    
-    // fetch(url)
-    // .then(response => response.json())
-    // .then(response => {
-    //   let newUser = response
-    //   this.props.addUser(newUser)
-    // })
-    // .catch(err => {
-    //   console.log(err)
-    // })
-  }
 
-  
-  
+  }
   render() {
     return (
       <div className="body">
@@ -26,11 +13,12 @@ class Body extends Component {
             This is where our search bar will go.
             <input type="text"></input><input type="submit"></input>
           </p>
+          <FavoritesDummy/>
         </div>
-        <div className="results">
+        <div className="recipes">
           <p>This is where our search results and recipes will go.</p>
         </div>
-      </div>
+</div>
     );
   }
 }

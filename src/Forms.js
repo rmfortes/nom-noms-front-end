@@ -14,20 +14,21 @@ class Forms extends Component {
 
   usernameLogin = (e) => {
     e.preventDefault();
-    if (e.target.type === "text") {
+  
       this.setState({
         username: e.target.value,
       });
-    }
+    console.log(this.state)
   };
 
   passwordLogin = (e) => {
     e.preventDefault();
-    if (e.target.type === "text") {
+    
       this.setState({
         password: e.target.value,
       });
-    }
+    
+      console.log(this.state);
   };
 
   handleSubmit = (e) => {
@@ -39,8 +40,7 @@ class Forms extends Component {
       body: JSON.stringify(this.state),
       headers: { "Content-type": "application/json" },
     })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
+    .catch(err => console.log(err))
   };
 
   render() {
@@ -61,11 +61,11 @@ class Forms extends Component {
 
             onChange={this.passwordLogin}
           ></input>
-          <Link to="/user"><input
+          <input
             onSubmit={this.handleSubmit}
             type="Submit"
             placeholder="submit"
-          ></input></Link>
+          ></input>
         </form>
       </div>
     );

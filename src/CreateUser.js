@@ -12,20 +12,20 @@ class CreateUser extends Component {
 
   usernameCreated = (e) => {
     e.preventDefault();
-    if (e.target.type === "text") {
-      this.setState({
-        username: e.target.value,
-      });
-    }
+
+    this.setState({
+      username: e.target.value,
+    });
   };
 
   passwordCreated = (e) => {
     e.preventDefault();
-    if (e.target.type === "text") {
-      this.setState({
-        password: e.target.value,
-      });
-    }
+
+    this.setState({
+      password: e.target.value,
+    });
+
+    console.log(this.state)
   };
 
   handleSubmit = (e) => {
@@ -59,13 +59,11 @@ class CreateUser extends Component {
             placeholder="Create Password"
             onChange={this.passwordCreated}
           ></input>
-          <Link to="/user">
-            <input
-              onSubmit={this.handleSubmit}
-              type="submit"
-              placeholder="submit"
-            ></input>
-          </Link>
+          <input
+            onSubmit={this.handleSubmit}
+            type="submit"
+            placeholder="submit"
+          ></input>
         </form>
       </div>
     );
