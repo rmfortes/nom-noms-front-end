@@ -11,20 +11,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      createUsername: "",
-      
+      username: "",
+      password: "",
     };
-    this.usernameCreated = this.usernameCreated.bind(this);
   }
-
-  usernameCreated = (e) => {
-    e.preventDefault();
-    if (e.target.type === "text") {
-      this.setState({
-        username: e.target.value,
-      });
-    }
-  };
 
   render() {
     return (
@@ -39,7 +29,11 @@ class App extends React.Component {
             <Route
               path="/user"
               render={(routerProps) => (
-                <Body addUser={this.usernameCreated} {...routerProps} {...this.state} />
+                <Body
+                  addUser={this.usernameCreated}
+                  {...routerProps}
+                  {...this.state}
+                />
               )}
             />
           </div>

@@ -30,6 +30,7 @@ class Forms extends Component {
       password: e.target.password,
     });
   };
+  
   handleSubmit = e => {
     e.preventDefault();
     console.log(e.target.value);

@@ -4,13 +4,10 @@ import { Link } from "react-router-dom";
 class CreateUser extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      createUsername: "",
-      createPassword: "",
+      username: "",
+      password: "",
     };
-    this.usernameCreated = this.usernameCreated.bind(this);
-    this.passwordCreated = this.passwordCreated.bind(this);
   }
 
   usernameCreated = (e) => {
@@ -20,6 +17,7 @@ class CreateUser extends Component {
         username: e.target.value,
       });
     }
+ 
   };
 
   passwordCreated = (e) => {
@@ -29,26 +27,29 @@ class CreateUser extends Component {
         password: e.target.value,
       });
     }
+  
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
+    console.log('hello')
     let URL = `https://nom-noms-api.herokuapp.com/user`;
     fetch(URL, {
       method: "POST",
-      body: JSON.stringify(this.state), //converts joke object to JSON, then send that JSON to post requset
+      body: JSON.stringify(this.state),
       headers: { "Content-type": "application/json" },
       
     })
       .then(res => res.json())
       .then(res => console.log(res));
-
+      
   };
+
+
   render() {
     return (
       <div>
-        <form className={`forms-${this.props.type}`}>
+        <form className={`forms-${this.props.type}`}onSubmit={this.handleSubmit}>
           {" "}
           <input
             type="text"
@@ -63,11 +64,11 @@ class CreateUser extends Component {
           <Link to="/user">
             <input
               onSubmit={this.handleSubmit}
-              type="Submit"
+              type="submit"
               placeholder="submit"
             ></input>
           </Link>
-        </form>
+        </form >
       </div>
     );
   }
