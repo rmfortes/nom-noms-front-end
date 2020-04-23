@@ -32,7 +32,7 @@ class CreateUser extends Component {
   handleSubmit = e => {
     e.preventDefault();
     console.log(e.target.value);
-    let URL = `http://localhost:4000/user`;
+    let URL = `https://nom-noms-api.herokuapp.com/user`;
     fetch(URL, {
       method: "post",
       body: JSON.stringify(this.state), //converts joke object to JSON, then send that JSON to post requset

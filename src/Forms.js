@@ -43,14 +43,6 @@ class Forms extends Component {
   render() {
     return (
       <div>
-<<<<<<< HEAD
-        {/* <form className={`forms-${props.type}`}>
-          {" "} */}
-          <input type="text" placeholder="Username"></input>
-          <input type="text" placeholder="Password"></input>
-          <input type="Submit" placeholder="submit"></input>
-        {/* </form> */}
-=======
         <form className={`forms-${this.props.type}`}>
           {" "}
           <input
@@ -71,7 +63,6 @@ class Forms extends Component {
             placeholder="submit"
           ></input>
         </form>
->>>>>>> d060704a5ee15b515228a029b3d8bbccbaea6ccb
       </div>
     );
   }
