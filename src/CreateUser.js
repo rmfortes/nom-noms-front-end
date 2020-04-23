@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class CreateUser extends Component {
   constructor(props) {
@@ -12,37 +13,37 @@ class CreateUser extends Component {
     this.passwordCreated = this.passwordCreated.bind(this);
   }
 
-  usernameCreated = e => {
+  usernameCreated = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
-    this.setState({
-      username: e.target.username,
-    });
-
-    //this.setState { username: e.target.value}
+    if (e.target.type === "text") {
+      this.setState({
+        username: e.target.value,
+      });
+    }
   };
 
-  passwordCreated = e => {
+  passwordCreated = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
-    this.setState({
-      password: e.target.password,
-    });
+    if (e.target.type === "text") {
+      this.setState({
+        password: e.target.value,
+      });
+    }
   };
-  handleSubmit = e => {
+
+  handleSubmit = (e) => {
     e.preventDefault();
     console.log(e.target.value);
     let URL = `https://nom-noms-api.herokuapp.com/user`;
     fetch(URL, {
-      method: "post",
+      method: "POST",
       body: JSON.stringify(this.state), //converts joke object to JSON, then send that JSON to post requset
       headers: { "Content-type": "application/json" },
-    });
-    // fetch(URL)
-    //   .then(res => res.json())
-    //   .then(res => console.log(res));
+      
+    })
+      .then(res => res.json())
+      .then(res => console.log(res));
 
-    //fetch here
   };
   render() {
     return (
@@ -52,20 +53,20 @@ class CreateUser extends Component {
           <input
             type="text"
             placeholder="Create Username"
-            value={this.state.createUsername}
             onChange={this.usernameCreated}
           ></input>
           <input
             type="text"
             placeholder="Create Password"
-            value={this.state.createPassword}
             onChange={this.passwordCreated}
           ></input>
-          <input
-            onClick={this.handleSubmit}
-            type="Submit"
-            placeholder="submit"
-          ></input>
+          <Link to="/user">
+            <input
+              onSubmit={this.handleSubmit}
+              type="Submit"
+              placeholder="submit"
+            ></input>
+          </Link>
         </form>
       </div>
     );

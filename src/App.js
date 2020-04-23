@@ -4,22 +4,27 @@ import "./App.css";
 import Header from "./Header.js";
 import Forms from "./Forms.js";
 import CreateUser from "./CreateUser.js";
-import Login from "./Login";
-import DummyComponent from "./DummyComponent";
+
 import Body from "./Body";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [],
+      createUsername: "",
+      
     };
-    this.addUser = this.addUser.bind(this);
+    this.usernameCreated = this.usernameCreated.bind(this);
   }
 
-  addUser(user) {
-    this.setState({ user: user });
-  }
+  usernameCreated = (e) => {
+    e.preventDefault();
+    if (e.target.type === "text") {
+      this.setState({
+        username: e.target.value,
+      });
+    }
+  };
 
   render() {
     return (
@@ -27,23 +32,14 @@ class App extends React.Component {
         <div className="App">
           <Header />
           <div className="login">
-            <Link to="/users">{Login}</Link>
-            {/* <Route
-              path="/"
-              render={(routerProps) => (
-                <Login
-                  addUser={this.addUser}
-                  {...routerProps}
-                  {...this.state}
-                />
-              )} */}
+            {/* <Link to="/users">{Login}</Link> */}
 
-                <Route path="/" exact component={Login}/>
-                <Route path="/" exact component={DummyComponent}/>
+            <Route path="/" exact component={CreateUser} />
+
             <Route
               path="/user"
               render={(routerProps) => (
-                <Body addUser={this.addUser} {...routerProps} {...this.state} />
+                <Body addUser={this.usernameCreated} {...routerProps} {...this.state} />
               )}
             />
           </div>
