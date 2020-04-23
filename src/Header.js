@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
     <div>
       <header className="header">
-          <p>NomNoms</p>
-          <button>"submit"</button>
+          <Link to="/"><p>NomNoms</p></Link>
       </header>
     </div>
   );

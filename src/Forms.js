@@ -3,15 +3,16 @@ import "./Forms.css";
 
 class Forms extends Component {
   render() {
-    const Forms = props => (
-    <form className={`forms-${props.type}`}>
-      {" "}
-      <input type="text" placeholder="Username"></input>
-      <input type="text" placeholder="Password"></input>
-      <input type="Submit" placeholder="submit"></input>
-    </form>
+    return (
+      <div>
+        {/* <form className={`forms-${props.type}`}>
+          {" "} */}
+          <input type="text" placeholder="Username"></input>
+          <input type="text" placeholder="Password"></input>
+          <input type="Submit" placeholder="submit"></input>
+        {/* </form> */}
+      </div>
     );
-    return <div></div>;
   }
 }
 

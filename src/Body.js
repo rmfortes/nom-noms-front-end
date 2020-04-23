@@ -1,6 +1,23 @@
 import React, { Component } from "react";
 
 class Body extends Component {
+  componentDidMount () {
+    // const url=//our url here
+    
+    
+    // fetch(url)
+    // .then(response => response.json())
+    // .then(response => {
+    //   let newUser = response
+    //   this.props.addUser(newUser)
+    // })
+    // .catch(err => {
+    //   console.log(err)
+    // })
+  }
+
+  
+  
   render() {
     return (
       <div className="body">

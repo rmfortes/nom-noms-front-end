@@ -4,29 +4,22 @@ import "./App.css";
 import Header from "./Header.js";
 import Forms from "./Forms.js";
 import CreateUser from "./CreateUser.js";
-
-import Body from "./Body.js";
+import Login from "./Login";
+import DummyComponent from "./DummyComponent";
+import Body from './Body';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       users: [],
     };
-
-    this.createUser = this.createUser.bind(this);
+    this.addUser = this.addUser.bind(this);
   }
 
-  createUser(users) {
-    this.setState({ users: users });
+  addUser(user) {
+    this.setState({ user: user });
   }
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.setState({ users: 'hellohello' })
-    console.log("I've been submitted");
-  };
 
   render() {
     return (
@@ -34,25 +27,22 @@ class App extends React.Component {
         <div className="App">
           <Header />
           <div className="login">
+            <Link to="/users">{Login}</Link>
+            <Route path="/" 
+              render={routerProps => 
+              <Login addUser={this.addUser}
+            {...routerProps}
+          {...this.state} />} />
+            
+            
+            
 
-            <Route
-              path="/"
-              render={(routerProps) => <Forms onSubmit={this.handleSubmit}
-              {...routerProps}
-              {...this.state} />}
-              exact
-              component={Body}>
-            </Route>
-
-            <Route 
-              path="/users"
-              render={(routerProps) => <CreateUser onSubmit={this.handleSubmit}
-              {...routerProps}
-              {...this.state} />}
-               exact component={Body} 
-               />
-
-            {/* <Body /> */}
+           
+            <Route path="/" component={DummyComponent} />
+            <Route path="/user" render={routerProps => <Body addUser={this.addUser}
+            {...routerProps}
+            {...this.state}/>}
+            />
           </div>
         </div>
       </Router>
