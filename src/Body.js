@@ -9,7 +9,7 @@ class Body extends Component {
   constructor() {
     super();
     this.state = {
-      Username: "arjunrawal07",
+      Username: "",
       Password: "",
       FavoriteRecipes: [],
     };
@@ -19,7 +19,12 @@ class Body extends Component {
     const username = this.state.Username;
     const profileURL = `${baseURL}${username}`;
 
-    fetch(profileURL)
+    fetch(profileURL, {
+      method: "GET",
+      body: JSON.stringify(this.state.Username),
+      headers: { "Content-Type": "application/JSON" },
+    })
+      .catch((err) => console.log(err))
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

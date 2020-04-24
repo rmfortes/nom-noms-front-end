@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Forms.css";
+import { Redirect } from "react-router-dom";
 
 class Forms extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class Forms extends Component {
     this.state = {
       Username: "",
       Password: "",
+      redirect: null,
     };
   }
 
@@ -33,17 +35,24 @@ class Forms extends Component {
     let URL = "https://nom-noms-api.herokuapp.com/user/";
 
     fetch(`${URL}${this.state.Username}`)
-    .then(res => res.json())
-    .then((data) => {
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
-        if (this.state.Username == data.Username && this.state.Password == data.Password) {
+        if (
+          this.state.Username == data.Username &&
+          this.state.Password == data.Password
+        ) {
           console.log("success");
+          this.setState({ redirect: "/user" });
         }
       })
       .catch((err) => console.log(err));
   };
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
     return (
       <div>
         <form
