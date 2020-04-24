@@ -39,10 +39,8 @@ class App extends React.Component {
                   {...routerProps}
                   {...this.state}
                 />
-              )} />
-
-              {/* // {loggedIn ? <Redirect to="/user:Username" /> : <Body />} */}
-            
+              )}
+            />
           </div>
         </div>
       </Router>
