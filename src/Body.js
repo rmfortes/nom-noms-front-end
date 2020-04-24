@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Redirect } from "react-router-dom";
 import Search from "./Search";
 import "./Body.css";
 let searchURL = "https://nom-noms-api.herokuapp.com/search/?ingredient=";
@@ -13,6 +13,7 @@ class Body extends Component {
       Password: "",
       FavoriteRecipes: [],
       searchTerm: "",
+      redirect: null,
     };
   }
 
@@ -82,11 +83,12 @@ class Body extends Component {
   //   });
 
   deleteData = () => {
-    const username = this.props.match.params.Username;
+    // e.preventDefault();
+    const username = this.state.Username;
     const profileURL = `${baseURL}${username}`;
     fetch(profileURL, {
       method: "DELETE",
-      body: this.state,
+      body: JSON.stringify(this.state),
     })
       .then((res) => {
         console.log(res);
@@ -94,13 +96,17 @@ class Body extends Component {
       .catch((err) => {
         console.log(err);
       });
+    // this.setState({ redirect: "/" });
   };
 
   render() {
-    // let display = this.props.profiles.map((profile, i) => {
+    // if (this.state.redirect) {
+    //   return <Redirect to={this.state.redirect} />;
+    // }
     return (
       <div>
         <div className="body">
+          <div>Logged In As: {this.state.Username}</div>
           <div className="searchBar">
             <Search />
           </div>
@@ -112,7 +118,7 @@ class Body extends Component {
           </div>
         </div>
         <div className="button">
-          <button type="click">DELETE PROFILE</button>
+          <button onclick={this.deleteData()}>DELETE PROFILE</button>
         </div>
         <div>
           <form
