@@ -33,7 +33,7 @@ class Body extends Component {
       .catch(err => {
         console.log(err);
       });
-  }
+    }
 
   deleteData = () => {
     const username = this.props.match.params.Username;
