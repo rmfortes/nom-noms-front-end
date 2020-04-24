@@ -13,7 +13,10 @@ class App extends React.Component {
     this.state = {
       Username: "",
       Password: "",
+<<<<<<< HEAD
       profiles: [],
+=======
+>>>>>>> 558e36619bca854a842826c51b4eec425a4644ad
     };
     this.setProfiles = this.setProfiles.bind(this);
   }
@@ -27,8 +30,7 @@ class App extends React.Component {
         <div className="App">
           <Header />
           <div className="login">
-            {/* <Link to="/users">{Login}</Link> */}
-
+            <Route path="/" exact component={Forms} />
             <Route path="/" exact component={CreateUser} />
 
             <Route
