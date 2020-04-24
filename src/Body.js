@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import Search from "./Search";
 import "./Body.css";
-let searchURL = "https://nom-noms-api.herokuapp.com/search/?ingredient=";
+// let searchURL = "https://nom-noms-api.herokuapp.com/search/?ingredient=";
 let baseURL = "https://nom-noms-api.herokuapp.com/user/";
 
 class Body extends Component {
@@ -23,18 +22,18 @@ class Body extends Component {
     const searchTerm = this.state.searchTerm;
     let searchURL = `https://nom-noms-api.herokuapp.com/search/?ingredient=${this.state.searchTerm}`;
 
-    fetch(profilePageURL)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        let profilePages = {
-          Username: `${data.Username}`,
-          Favorites: `${data.Favorites[0].FavoriteRecipes}`,
-        };
-        console.log(profilePages);
-        this.props.setProfiles(profilePages);
-        console.log(profilePages);
-      });
+    // fetch(profilePageURL)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     let profilePages = {
+    //       Username: `${data.Username}`,
+    //       Favorites: `${data.Favorites[0].FavoriteRecipes}`,
+    //     };
+    //     console.log(profilePages);
+    //     this.props.setProfiles(profilePages);
+    //     console.log(profilePages);
+    //   });
   }
   usernameLogin = (e) => {
     e.preventDefault();
@@ -58,8 +57,8 @@ class Body extends Component {
       .then((res) => res.json())
       .then((data) => {
         if (
-          this.state.Username == data.Username &&
-          this.state.Password == data.Password
+          this.state.Username === data.Username &&
+          this.state.Password === data.Password
         ) {
           console.log("success");
           this.setState({ FavoriteRecipes: data.Favorites[0].FavoriteRecipes });
@@ -110,7 +109,7 @@ class Body extends Component {
           <form>
             <input
               type="submit"
-              onSubmit={this.deleteData()}
+              onSubmit={this.deleteData}
               value="DELETE PROFILE"
             ></input>
           </form>
@@ -132,8 +131,7 @@ class Body extends Component {
             ></input>
             <input
               onSubmit={this.handleSubmit}
-              type="Submit"
-              placeholder="submit"
+              type="submit"
               value="Login"
             ></input>
           </form>
