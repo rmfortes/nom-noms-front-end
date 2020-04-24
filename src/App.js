@@ -32,13 +32,21 @@ class App extends React.Component {
 
             <Route
               path="/user"
-              render={routerProps => (
+              render={(routerProps) => (
                 <Body
                   setProfiles={this.setProfiles}
                   addUser={this.usernameCreated}
                   {...routerProps}
                   {...this.state}
                 />
+                
+                
+                <div className="searchResults">
+
+                <Route path="search"
+                resnder={}
+
+
               )}
               // {loggedIn ? <Redirect to="/user:Username" /> : <Body />}
             />

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import FavoritesDummy from "./FavoritesDummy.js";
 import Search from "./Search";
 import "./Body.css";
 let baseURL = "https://nom-noms-api.herokuapp.com/alluseraccounts";
@@ -12,6 +11,7 @@ class Body extends Component {
       Username: "arjunrawal07",
       Password: "",
       FavoriteRecipes: [],
+      searchTerm: ""
     };
   }
 
