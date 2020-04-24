@@ -14,21 +14,21 @@ class Forms extends Component {
 
   usernameLogin = (e) => {
     e.preventDefault();
-  
-      this.setState({
-        username: e.target.value,
-      });
-    console.log(this.state)
+
+    this.setState({
+      username: e.target.value,
+    });
+    console.log(this.state);
   };
 
   passwordLogin = (e) => {
     e.preventDefault();
-    
-      this.setState({
-        password: e.target.value,
-      });
-    
-      console.log(this.state);
+
+    this.setState({
+      password: e.target.value,
+    });
+
+    console.log(this.state);
   };
 
   handleSubmit = (e) => {
@@ -39,26 +39,24 @@ class Forms extends Component {
       method: "GET",
       body: JSON.stringify(this.state),
       headers: { "Content-type": "application/json" },
-    })
-    .catch(err => console.log(err))
+    }).catch((err) => console.log(err));
   };
 
   render() {
     return (
       <div>
-        <form className={`forms-${this.props.type}`}
-        onSubmit={this.handleSubmit}>
-          {" "}
+        <form
+          className={`forms-${this.props.type}`}
+          onSubmit={this.handleSubmit}
+        >
           <input
             type="text"
             placeholder="Username"
-
             onChange={this.usernameLogin}
           ></input>
           <input
             type="text"
             placeholder="Password"
-
             onChange={this.passwordLogin}
           ></input>
           <input
