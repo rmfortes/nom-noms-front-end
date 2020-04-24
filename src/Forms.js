@@ -1,48 +1,58 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Forms.css";
+import { Redirect } from "react-router-dom";
 
 class Forms extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: "",
-      password: "",
+      Username: "",
+      Password: "",
+      redirect: null,
     };
   }
 
   usernameLogin = (e) => {
     e.preventDefault();
-
     this.setState({
-      username: e.target.value,
+      Username: e.target.value,
     });
     console.log(this.state);
   };
 
   passwordLogin = (e) => {
     e.preventDefault();
-
     this.setState({
-      password: e.target.value,
+      Password: e.target.value,
     });
-
     console.log(this.state);
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("hello");
-    let URL = `https://nom-noms-api.herokuapp.com/user`;
-    fetch(URL, {
-      method: "GET",
-      body: JSON.stringify(this.state),
-      headers: { "Content-type": "application/json" },
-    }).catch((err) => console.log(err));
+    let URL = "https://nom-noms-api.herokuapp.com/user/";
+
+    fetch(`${URL}${this.state.Username}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (
+          this.state.Username == data.Username &&
+          this.state.Password == data.Password
+        ) {
+          console.log("success");
+          this.setState({ redirect: "/user"`${this.state.Username}` });
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
     return (
       <div>
         <form
@@ -63,6 +73,7 @@ class Forms extends Component {
             onSubmit={this.handleSubmit}
             type="Submit"
             placeholder="submit"
+            value="Login"
           ></input>
         </form>
       </div>

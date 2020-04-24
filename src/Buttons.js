@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "./Buttons.css";
 import Forms from "./Forms";
 
-import React, { Component } from "react";
-
 let baseURL = "https://nom-noms-api.herokuapp.com/user/";
 
 class Buttons extends Component {

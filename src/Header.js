@@ -6,7 +6,8 @@ function Header() {
   return (
     <div>
       <header className="header">
-          <Link to="/"><p>NomNoms</p></Link>
+          <Link to="/" style={{textDecoration: "none"}}><h3>NomNoms</h3>
+          </Link>
       </header>
     </div>
   );
