@@ -24,7 +24,7 @@ class Body extends Component {
       .then((data) => {
         console.log(data);
         let profilePages = data.map((profile) => ({
-          Username: `${profile.Userame}`,
+          Username: `${profile.Username}`,
           Favorites: `${profile.Favorites[0].FavoriteRecipes}`,
         }));
         console.log(profilePages);
