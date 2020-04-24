@@ -12,53 +12,30 @@ class CreateUser extends Component {
 
   usernameCreated = e => {
     e.preventDefault();
-
     this.setState({
-<<<<<<< HEAD
-      username: e.target.value,
-    });
-=======
       Username: e.target.value,
     });
-    // console.log(this.state);
->>>>>>> second-login-page-second-feature-branch
   };
 
   passwordCreated = e => {
     e.preventDefault();
-<<<<<<< HEAD
-
-    this.setState({
-      password: e.target.value,
-    });
-
-    console.log(this.state)
-=======
-    console.log(e.target.value);
-
     this.setState({
       Password: e.target.value,
     });
-    console.log(this.state);
->>>>>>> second-login-page-second-feature-branch
   };
 
   handleSubmit = e => {
     e.preventDefault();
     console.log("hello");
-    let URL = `https://nom-noms-api.herokuapp.com/user`;
-    let localURL = "http://localhost:4000/user";
+
+    let URL = `https://nom-noms-api.herokuapp.com/user/`;
     fetch(URL, {
       method: "POST",
       body: JSON.stringify(this.state),
       headers: { "Content-type": "application/json" },
-<<<<<<< HEAD
     })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
-=======
-    }).catch(err => console.log(err));
->>>>>>> second-login-page-second-feature-branch
+      .then(res => res.json())
+      .catch(err => console.log(err));
   };
 
   render() {
@@ -79,19 +56,11 @@ class CreateUser extends Component {
             placeholder="Create Password"
             onChange={this.passwordCreated}
           ></input>
-<<<<<<< HEAD
-=======
-          {/* <Link to="/user"> */}
->>>>>>> second-login-page-second-feature-branch
           <input
             onSubmit={this.handleSubmit}
             type="submit"
             placeholder="submit"
           ></input>
-<<<<<<< HEAD
-=======
-          {/* </Link> */}
->>>>>>> second-login-page-second-feature-branch
         </form>
       </div>
     );
