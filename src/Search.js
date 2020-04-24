@@ -1,32 +1,21 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-class CreateUser extends Component {
+class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Username: "",
-      Password: "",
+      Favorites: "",
     };
   }
 
-  usernameCreated = e => {
+  userSubmit = e => {
     e.preventDefault();
 
     this.setState({
       Username: e.target.value,
     });
     // console.log(this.state);
-  };
-
-  passwordCreated = e => {
-    e.preventDefault();
-    console.log(e.target.value);
-
-    this.setState({
-      Password: e.target.value,
-    });
-    console.log(this.state);
   };
 
   handleSubmit = e => {
@@ -51,13 +40,8 @@ class CreateUser extends Component {
           {" "}
           <input
             type="text"
-            placeholder="Create Username"
-            onChange={this.usernameCreated}
-          ></input>
-          <input
-            type="text"
-            placeholder="Create Password"
-            onChange={this.passwordCreated}
+            placeholder="Search"
+            onChange={this.userSubmit}
           ></input>
           {/* <Link to="/user"> */}
           <input
@@ -72,4 +56,4 @@ class CreateUser extends Component {
   }
 }
 
-export default CreateUser;
+export default Search;

@@ -1,10 +1,9 @@
 import React, { Component } from "react";
+import Search from "./Search";
 
 class Body extends Component {
-  componentDidMount () {
+  componentDidMount() {
     // const url=//our url here
-    
-    
     // fetch(url)
     // .then(response => response.json())
     // .then(response => {
@@ -16,16 +15,11 @@ class Body extends Component {
     // })
   }
 
-  
-  
   render() {
     return (
       <div className="body">
         <div className="searchBar">
-          <p>
-            This is where our search bar will go.
-            <input type="text"></input><input type="submit"></input>
-          </p>
+          <Search />
         </div>
         <div className="results">
           <p>This is where our search results and recipes will go.</p>
