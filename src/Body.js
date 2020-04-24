@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-import FavoritesDummy from "./FavoritesDummy.js";
 import Search from "./Search";
 import "./Body.css";
 let baseURL = "https://nom-noms-api.herokuapp.com/alluseraccounts";
+let searchURL = "https://nom-noms-api.herokuapp.com/search/?ingredient=";
 
 class Body extends Component {
   constructor() {
@@ -12,12 +12,15 @@ class Body extends Component {
       Username: "arjunrawal07",
       Password: "",
       FavoriteRecipes: [],
+      searchTerm: "",
     };
   }
 
   componentDidMount() {
     const username = this.state.Username;
     const profileURL = `${baseURL}`;
+    const searchTerm = this.state.searchTerm;
+    let searchURL = `https://nom-noms-api.herokuapp.com/search/?ingredient=${this.state.searchTerm}`;
 
     fetch(profileURL)
       .then((res) => res.json())
@@ -30,6 +33,19 @@ class Body extends Component {
         console.log(profilePages);
         this.props.setProfiles(profilePages);
         console.log(profilePages);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    fetch(searchURL)
+      .then((res) => res.json())
+      .then((searchData) => {
+        console.log(searchData);
+        let searchResults = searchData.map((search) => ({
+          searchTerm: `${searchTerm}`
+        }));
+        console.log(searchResults);
       })
       .catch((err) => {
         console.log(err);
@@ -58,8 +74,8 @@ class Body extends Component {
           <div className="searchBar">
             <Search />
           </div>
-          <div className="results">
-            <p>This is where our search results and recipes will go.</p>
+          <div className="results" key={i}>
+            <p>Your results: {profile.searchTerm}</p>
           </div>
           <div>Your Favorites: {profile.Favorites}</div>
           <button type="click" onCLick={this.deleteData()}>
