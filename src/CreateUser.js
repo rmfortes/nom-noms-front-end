@@ -5,51 +5,46 @@ class CreateUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: "",
+      Username: "",
+      Password: "",
     };
   }
 
   usernameCreated = (e) => {
     e.preventDefault();
-    if (e.target.type === "text") {
-      this.setState({
-        username: e.target.value,
-      });
-    }
- 
+    this.setState({
+      Username: e.target.value,
+    });
   };
 
   passwordCreated = (e) => {
     e.preventDefault();
-    if (e.target.type === "text") {
-      this.setState({
-        password: e.target.value,
-      });
-    }
-  
+    this.setState({
+      Password: e.target.value,
+    });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('hello')
-    let URL = `https://nom-noms-api.herokuapp.com/user`;
+    console.log("hello");
+    let URL = `https://nom-noms-api.herokuapp.com/user/`;
     fetch(URL, {
       method: "POST",
       body: JSON.stringify(this.state),
       headers: { "Content-type": "application/json" },
-      
     })
-      .then(res => res.json())
-      .then(res => console.log(res));
-      
+      .then((res) => res.json())
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
-
 
   render() {
     return (
       <div>
-        <form className={`forms-${this.props.type}`}onSubmit={this.handleSubmit}>
+        <form
+          className={`forms-${this.props.type}`}
+          onSubmit={this.handleSubmit}
+        >
           {" "}
           <input
             type="text"
@@ -61,14 +56,12 @@ class CreateUser extends Component {
             placeholder="Create Password"
             onChange={this.passwordCreated}
           ></input>
-          <Link to="/user">
-            <input
-              onSubmit={this.handleSubmit}
-              type="submit"
-              placeholder="submit"
-            ></input>
-          </Link>
-        </form >
+          <input
+            onSubmit={this.handleSubmit}
+            type="submit"
+            placeholder="submit"
+          ></input>
+        </form>
       </div>
     );
   }

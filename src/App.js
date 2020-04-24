@@ -13,9 +13,13 @@ class App extends React.Component {
     this.state = {
       Username: "",
       Password: "",
+      profiles: [],
     };
+    this.setProfiles = this.setProfiles.bind(this);
   }
-
+  setProfiles(profiles) {
+    this.setState({ profiles: profiles });
+  }
 
   render() {
     return (
@@ -31,11 +35,13 @@ class App extends React.Component {
               path="/user"
               render={(routerProps) => (
                 <Body
+                  setProfiles={this.setProfiles}
                   addUser={this.usernameCreated}
                   {...routerProps}
                   {...this.state}
                 />
               )}
+              // {loggedIn ? <Redirect to="/user:Username" /> : <Body />}
             />
           </div>
         </div>
