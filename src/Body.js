@@ -12,32 +12,26 @@ class Body extends Component {
       Username: "arjunrawal07",
       Password: "",
       FavoriteRecipes: [],
-      searchTerm: ""
     };
   }
-  
+
   componentDidMount() {
-    console.log("componentDidMount");
     const username = this.state.Username;
     const profileURL = `${baseURL}`;
-    console.log(profileURL);
-
-    console.log(username);
-
 
     fetch(profileURL)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-        let profilePages = data.map(profile => ({
-          Username: `${profile.name}`,
-          Favorites: `${profile.Favorites}`,
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        let profilePages = data.map((profile) => ({
+          Username: `${profile.Userame}`,
+          Favorites: `${profile.Favorites[0].FavoriteRecipes}`,
         }));
-        console.log(profilePages)
+        console.log(profilePages);
         this.props.setProfiles(profilePages);
         console.log(profilePages);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }
@@ -49,10 +43,10 @@ class Body extends Component {
       method: "DELETE",
       body: this.state,
     })
-      .then(res => {
+      .then((res) => {
         console.log(res);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -60,19 +54,17 @@ class Body extends Component {
   render() {
     let display = this.props.profiles.map((profile, i) => {
       return (
-        <div className="body">
+        <div className="body" key={i}>
           <div className="searchBar">
             <Search />
           </div>
           <div className="results">
             <p>This is where our search results and recipes will go.</p>
           </div>
-          <div>Your Favorites: {profile.FavoriteRecipes}</div>
+          <div>Your Favorites: {profile.Favorites}</div>
           <button type="click" onCLick={this.deleteData()}>
             DELETE PROFILE
           </button>
-
-          
         </div>
       );
     });
