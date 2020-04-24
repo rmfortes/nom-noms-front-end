@@ -12,6 +12,7 @@ class Body extends Component {
       Username: "arjunrawal07",
       Password: "",
       FavoriteRecipes: [],
+      searchTerm: ""
     };
   }
   

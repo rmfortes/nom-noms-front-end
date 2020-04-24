@@ -5,7 +5,7 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Favorites: [],
+      searchTerm: ""
     };
   }
 
@@ -13,17 +13,16 @@ class Search extends Component {
     e.preventDefault();
 
     this.setState({
-      Username: e.target.value,
+      searchTerm: e.target.value,
+      //We are not setting the state of the username, we are setting the state of the body? Of what are we setting the state? 
     });
-
-    console.log(this.state);
+    console.log(this.state.searchTerm)
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("hello");
-    let URL = `https://nom-noms-api.herokuapp.com/user`;
-    let localURL = "http://localhost:4000/user";
+    console.log(this.state);
+    let URL = `https://nom-noms-api.herokuapp.com/search/?ingredient=${this.state.searchTerm}`;
     fetch(URL, {
       method: "GET",
       body: JSON.stringify(this.state),
