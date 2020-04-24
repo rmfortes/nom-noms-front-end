@@ -7,6 +7,7 @@ class CreateUser extends Component {
     this.state = {
       Username: "",
       Password: "",
+      FavoriteRecipes: [],
       redirect: null,
     };
   }

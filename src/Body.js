@@ -81,28 +81,17 @@ class Body extends Component {
   //   .catch((err) => {
   //     console.log(err);
   //   });
-
   deleteData = () => {
-    // e.preventDefault();
     const username = this.state.Username;
     const profileURL = `${baseURL}${username}`;
     fetch(profileURL, {
       method: "DELETE",
       body: JSON.stringify(this.state),
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    // this.setState({ redirect: "/" });
+    }).catch((err) => {
+      console.log(err);
+    });
   };
-
   render() {
-    // if (this.state.redirect) {
-    //   return <Redirect to={this.state.redirect} />;
-    // }
     return (
       <div>
         <div className="body">
@@ -118,7 +107,13 @@ class Body extends Component {
           </div>
         </div>
         <div className="button">
-          <button onclick={this.deleteData()}>DELETE PROFILE</button>
+          <form>
+            <input
+              type="submit"
+              onSubmit={this.deleteData()}
+              value="DELETE PROFILE"
+            ></input>
+          </form>
         </div>
         <div>
           <form
