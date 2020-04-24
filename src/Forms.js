@@ -43,7 +43,7 @@ class Forms extends Component {
           this.state.Password == data.Password
         ) {
           console.log("success");
-          this.setState({ redirect: "/user" });
+          this.setState({ redirect: "/user"`${this.state.Username}` });
         }
       })
       .catch((err) => console.log(err));
