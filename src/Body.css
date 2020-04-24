@@ -4,3 +4,10 @@ button {
   border-radius: 10%;
   border: 2px solid lightblue;
 }
+.button {
+  margin-left: -300px;
+}
+
+.favorites {
+  border: 2px solid purple;
+}

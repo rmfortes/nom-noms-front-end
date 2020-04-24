@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import FavoritesDummy from "./FavoritesDummy.js";
 import Search from "./Search";
 import "./Body.css";
-let baseURL = "https://nom-noms-api.herokuapp.com/alluseraccounts";
+let baseURL = "https://nom-noms-api.herokuapp.com/user/";
 
 class Body extends Component {
   constructor() {
@@ -17,16 +17,16 @@ class Body extends Component {
 
   componentDidMount() {
     const username = this.state.Username;
-    const profileURL = `${baseURL}`;
+    const profileURL = `${baseURL}${username}`;
 
     fetch(profileURL)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        let profilePages = data.map((profile) => ({
-          Username: `${profile.Username}`,
-          Favorites: `${profile.Favorites[0].FavoriteRecipes}`,
-        }));
+        let profilePages = {
+          Username: `${data.Username}`,
+          Favorites: `${data.Favorites[0].FavoriteRecipes}`,
+        };
         console.log(profilePages);
         this.props.setProfiles(profilePages);
         console.log(profilePages);
@@ -52,24 +52,29 @@ class Body extends Component {
   };
 
   render() {
-    let display = this.props.profiles.map((profile, i) => {
-      return (
-        <div className="body" key={i}>
+    // let display = this.props.profiles.map((profile, i) => {
+    return (
+      <div>
+        <div className="body">
           <div className="searchBar">
             <Search />
           </div>
           <div className="results">
             <p>This is where our search results and recipes will go.</p>
           </div>
-          <div>Your Favorites: {profile.Favorites}</div>
+          <div className="favorites">
+            Your Favorites: {this.props.profiles.Favorites}
+          </div>
+        </div>
+        <div className="button">
           <button type="click" onCLick={this.deleteData()}>
             DELETE PROFILE
           </button>
         </div>
-      );
-    });
-    return <div>{display}</div>;
+      </div>
+    );
   }
+  // return <div>{display}</div>;
 }
 
 export default Body;
