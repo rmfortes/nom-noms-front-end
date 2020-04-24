@@ -69,6 +69,7 @@ class Body extends Component {
 
   render() {
     let display = this.props.profiles.map((profile, i) => {
+      //! should this be mapping over *profiles*? If we want it to display the search results I think it ought to be mapping over that, not the user profiles.
       return (
         <div className="body" key={i}>
           <div className="searchBar">
