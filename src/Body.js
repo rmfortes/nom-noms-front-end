@@ -74,8 +74,8 @@ class Body extends Component {
           <div className="searchBar">
             <Search />
           </div>
-          <div className="results">
-            <p>This is where our search results and recipes will go.</p>
+          <div className="results" key={i}>
+            <p>Your results: {profile.searchTerm}</p>
           </div>
           <div>Your Favorites: {profile.Favorites}</div>
           <button type="click" onCLick={this.deleteData()}>
