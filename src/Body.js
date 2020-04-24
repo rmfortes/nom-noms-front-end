@@ -23,10 +23,10 @@ class Body extends Component {
     let searchURL = `https://nom-noms-api.herokuapp.com/search/?ingredient=${this.state.searchTerm}`;
 
     fetch(profileURL)
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         console.log(data);
-        let profilePages = data.map((profile) => ({
+        let profilePages = data.map(profile => ({
           Username: `${profile.Username}`,
           Favorites: `${profile.Favorites[0].FavoriteRecipes}`,
         }));
@@ -34,7 +34,7 @@ class Body extends Component {
         this.props.setProfiles(profilePages);
         console.log(profilePages);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
 
@@ -59,10 +59,10 @@ class Body extends Component {
       method: "DELETE",
       body: this.state,
     })
-      .then((res) => {
+      .then(res => {
         console.log(res);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   };
