@@ -4,6 +4,8 @@ import Forms from "./Forms";
 
 import React, { Component } from "react";
 
+let baseURL = "https://nom-noms-api.herokuapp.com/user/";
+
 class Buttons extends Component {
   constructor(props) {
     super(props);
@@ -12,24 +14,42 @@ class Buttons extends Component {
       Name: "",
       Ingredients: [],
       URL: "",
+      Username: "",
     };
   }
 
   handleClick = e => {
     e.preventDefualt();
     console.log("I have been click");
-    let URL = `https://nom-noms-api.herokuapp.com/search`;
-    fetch(URL, {
-      method: "GET",
-      body: JSON.stringify(this.state),
+    const favoriteURL = "/Favorites/FavoriteRecipes";
+    const newURL = `${baseURL}${this.state.Username}${favoriteURL}`;
+    let newFavorite = {
+      Ingredients: this.state.Ingredients,
+    };
+    fetch(newURL, {
+      method: "PUT",
+      body: {
+        Name: this.state.Name,
+        Ingredients: this.state.Ingredients,
+        URL: this.state.URL,
+      },
       headers: { "Content-type": "application/json" },
-    }).catch(err => console.log(err));
+    })
+      .then(res => res.json())
+      .then(res => {
+        this.setState({});
+      })
+      .catch(err => console.log(err));
   };
 
   render() {
     return (
       <div>
-        <button className={classList} onClick={this.handleClick}>
+        <button
+          className={`button-${props.type}`}
+          type="favorites"
+          onClick={this.handleClick}
+        >
           {this.props.label}
         </button>
       </div>
