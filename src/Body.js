@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import FavoritesDummy from "./FavoritesDummy.js";
 import Search from "./Search";
 import "./Body.css";
-let baseURL = "https://nom-noms-api.herokuapp.com/user/";
+let baseURL = "https://nom-noms-api.herokuapp.com/alluseraccounts";
 
 class Body extends Component {
   constructor() {
@@ -12,21 +12,28 @@ class Body extends Component {
       Username: "arjunrawal07",
       Password: "",
       FavoriteRecipes: [],
+      searchTerm: ""
     };
   }
+  
   componentDidMount() {
     console.log("componentDidMount");
-    const username = this.props.match.params.name;
-    const profileURL = `${baseURL}${username}`;
+    const username = this.state.Username;
+    const profileURL = `${baseURL}`;
     console.log(profileURL);
+
+    console.log(username);
+
 
     fetch(profileURL)
       .then(res => res.json())
       .then(data => {
+        console.log(data)
         let profilePages = data.map(profile => ({
           Username: `${profile.name}`,
-          FavoriteRecipes: `${profile.Favorites.FavoriteRecipes[0]}`,
+          Favorites: `${profile.Favorites}`,
         }));
+        console.log(profilePages)
         this.props.setProfiles(profilePages);
         console.log(profilePages);
       })
@@ -64,6 +71,8 @@ class Body extends Component {
           <button type="click" onCLick={this.deleteData()}>
             DELETE PROFILE
           </button>
+
+          
         </div>
       );
     });

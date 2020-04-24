@@ -5,29 +5,29 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Favorites: "",
+      searchTerm: ""
     };
   }
 
-  userSubmit = e => {
+  userSubmit = (e) => {
     e.preventDefault();
 
     this.setState({
-      Username: e.target.value,
+      searchTerm: e.target.value,
+      //We are not setting the state of the username, we are setting the state of the body? Of what are we setting the state? 
     });
-    // console.log(this.state);
+    console.log(this.state.searchTerm)
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    console.log("hello");
-    let URL = `https://nom-noms-api.herokuapp.com/user`;
-    let localURL = "http://localhost:4000/user";
+    console.log(this.state);
+    let URL = `https://nom-noms-api.herokuapp.com/search/?ingredient=${this.state.searchTerm}`;
     fetch(URL, {
-      method: "POST",
+      method: "GET",
       body: JSON.stringify(this.state),
       headers: { "Content-type": "application/json" },
-    }).catch(err => console.log(err));
+    }).catch((err) => console.log(err));
   };
 
   render() {
@@ -37,19 +37,16 @@ class Search extends Component {
           className={`forms-${this.props.type}`}
           onSubmit={this.handleSubmit}
         >
-          {" "}
           <input
             type="text"
             placeholder="Search"
             onChange={this.userSubmit}
           ></input>
-          {/* <Link to="/user"> */}
           <input
             onSubmit={this.handleSubmit}
             type="submit"
             placeholder="submit"
           ></input>
-          {/* </Link> */}
         </form>
       </div>
     );
