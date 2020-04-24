@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "./Buttons.css";
 import Forms from "./Forms";
 
-import React, { Component } from "react";
-
 let baseURL = "https://nom-noms-api.herokuapp.com/user/";
 
 class Buttons extends Component {
@@ -21,11 +19,11 @@ class Buttons extends Component {
   handleClick = e => {
     e.preventDefualt();
     console.log("I have been click");
-    const favoriteURL = "/Favorites/FavoriteRecipes";
+    const favoriteURL = "Favorites/FavoriteRecipes";
     const newURL = `${baseURL}${this.state.Username}${favoriteURL}`;
-    let newFavorite = {
-      Ingredients: this.state.Ingredients,
-    };
+    // let newFavorite = {
+    //   Ingredients: this.state.Ingredients,
+    // };
     fetch(newURL, {
       method: "PUT",
       body: {
@@ -37,7 +35,11 @@ class Buttons extends Component {
     })
       .then(res => res.json())
       .then(res => {
-        this.setState({});
+        this.setState({
+          // Name: this.state.Name,
+          // Ingredients: this.state.Ingredients,
+          // URL: this.state.URL,
+        });
       })
       .catch(err => console.log(err));
   };

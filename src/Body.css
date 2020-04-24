@@ -9,5 +9,6 @@ button {
 }
 
 .favorites {
+  width: 600px;
   border: 2px solid purple;
 }
