@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import "./Search.css";
 class Search extends Component {
   constructor(props) {
     super(props);
@@ -34,31 +34,18 @@ class Search extends Component {
       });
   };
 
-  //     method: "GET",
-  //     body: JSON.stringify(this.state),
-  //     headers: { "Content-type": "application/json" },
-  //   }).catch((err) => console.log(err));
-  // };
-  // fetch(searchURL)
-  //   .then((res) => res.json())
-  //   .then((searchData) => {
-  //     console.log(searchData);
-  //     let searchResults = searchData.map((search) => ({
-  //       searchTerm: `${searchTerm}`,
-  //     }));
-  //     console.log(searchResults);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-
   render() {
     let recipes = this.state.searchResults.map((recipe, i) => {
       return (
-        <div className="searchResults" key={i}>
+        <div key={i}>
           <ul>
-            {recipe.Name} <br></br>
-            {recipe.URL}
+            <Link
+              className="urlLink"
+              activeStyle={{ color: "blue" }}
+              to={recipe.URL}
+            >
+              {recipe.Name} <br></br>
+            </Link>
           </ul>
         </div>
       );
