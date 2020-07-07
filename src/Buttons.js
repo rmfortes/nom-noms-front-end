@@ -17,7 +17,7 @@ class Buttons extends Component {
   }
 
   handleClick = e => {
-    e.preventDefualt();
+    e.preventDefault();
     console.log("I have been click");
     const favoriteURL = "Favorites/FavoriteRecipes";
     const newURL = `${baseURL}${this.state.Username}${favoriteURL}`;
