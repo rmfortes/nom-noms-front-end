@@ -22,18 +22,18 @@ class Body extends Component {
     const searchTerm = this.state.searchTerm;
     let searchURL = `https://nom-noms-api.herokuapp.com/search/?ingredient=${this.state.searchTerm}`;
 
-    // fetch(profilePageURL)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     let profilePages = {
-    //       Username: `${data.Username}`,
-    //       Favorites: `${data.Favorites[0].FavoriteRecipes}`,
-    //     };
-    //     console.log(profilePages);
-    //     this.props.setProfiles(profilePages);
-    //     console.log(profilePages);
-    //   });
+    fetch(profilePageURL)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        let profilePages = {
+          Username: `${data.Username}`,
+          Favorites: `${data.Favorites[0].FavoriteRecipes}`,
+        };
+        console.log(profilePages);
+        this.props.setProfiles(profilePages);
+        console.log(profilePages);
+      });
   }
   usernameLogin = (e) => {
     e.preventDefault();
@@ -68,18 +68,7 @@ class Body extends Component {
       .catch((err) => console.log(err));
   };
 
-  // fetch(searchURL)
-  //   .then((res) => res.json())
-  //   .then((searchData) => {
-  //     console.log(searchData);
-  //     let searchResults = searchData.map((search) => ({
-  //       searchTerm: `${searchTerm}`,
-  //     }));
-  //     console.log(searchResults);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+
   deleteData = () => {
     const username = this.state.Username;
     const profileURL = `${baseURL}${username}`;
