@@ -1,4 +1,5 @@
 import React from 'react';
+//import Link from 'react-dom';
 import './Splash.css';
 
 function Splash(props) {
