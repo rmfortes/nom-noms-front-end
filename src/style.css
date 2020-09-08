@@ -2,3 +2,10 @@
     box-sizing: border-box;
     border: 1px solid red;
 }
+.colorscheme{
+    color: #a7a1a0;
+    color: #393a10;
+    color: #cb9f01;
+    color: #d1cac7;
+    color: #5efda0;
+}
