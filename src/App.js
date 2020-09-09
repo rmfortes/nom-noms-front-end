@@ -9,7 +9,7 @@ Splash page allows for logging in or registering.
 If registering is selected, component swaps out.
 */
 function App() {
-  return (<>
+  return (<div className="app">
   <Route
     path="/home"
     exact
@@ -27,7 +27,7 @@ function App() {
     )}>
 
   </Route>
-  </>
+  </div>
   )
 }
 
