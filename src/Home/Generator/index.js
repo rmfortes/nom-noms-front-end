@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './style.css';
-const backendurl = "https://www.whoknows.com";
+import axios from 'axios';
+import HomeGeneratorRecipeTemplate from './RecipeTemplate/index.js';
+const backendurl = "http://localhost:8000";
 
 
 //this function will hit a path that brings up a random recipe.
@@ -10,27 +12,43 @@ Speed is essential, so that after a short loopable animation the recipe should c
 All methods to potentially speed up the button results should be explored.
 */
 
-
-
 const HomeGenerator = () => {
-    const [content, setContent] = useState("content not set");
+    const [content, setContent] = useState(null);
+    const [recipe, setRecipe] = useState(null);
+    const [recipes, setRecipes] = useState([]);
+    const [shopList, setShopList] = useState(null);
+
     const generateRandomRecipe = () => {
-        setContent("random recipe")
+        let randomnum = Math.floor(Math.random() * 10000)
+        axios.get(`${backendurl}/recipes/${randomnum}`)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.name != null) {
+                    setRecipe(res.data)
+                } else generateRandomRecipe();               
+            })
     }
-
+    const generateByIngredient = () => {
+        axios.get(`${backendurl}/recipes/${randomnum}`)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.name != null) {
+                    setRecipe(res.data)
+                } else generateRandomRecipe();               
+            })
+    }
     const generateWeekMenu = () => {
-        setContent("random weeks recipe")
+        let recipeArray = ["1","2","3","4","5","6","7"];
+        setRecipes(recipeArray);
     }
-
     const printShoppingList = () => {
-        setContent("recipe shopping list")
+        
     }
-
     return (
         <div className="generator-div">
             <div className="generator-input-div">
                 <h2>What would you like to do today?</h2>
-                <ul>
+                <ul id="button-radio">
                     <li>
                         <button onClick={generateRandomRecipe}>Generate Random Recipe</button>
                     </li>
@@ -40,13 +58,16 @@ const HomeGenerator = () => {
                     <li>
                         <button onClick={printShoppingList}>Print Shopping List</button>
                     </li>
+                    <li>
+                        <button onClick={generateByIngredient}>Find Recipes with an ingredient</button><input type="text"></input>
+                    </li>
                 </ul>
+                <ul id="recipe history">
 
-
-
+                </ul>
             </div>
             <div className="generator-output-div">
-                <p className="content">{content}</p>
+                <HomeGeneratorRecipeTemplate key={recipe} recipe={recipe}></HomeGeneratorRecipeTemplate>
             </div>
         </div>
     )

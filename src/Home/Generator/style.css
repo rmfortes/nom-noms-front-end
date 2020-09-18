@@ -4,6 +4,10 @@
     flex-direction: column;
     height:100%;
 }
+#button-radio li{
+    float: left;
+    list-style: none;
+}
 .generator-input-div{
     height: 30vh;
 }
