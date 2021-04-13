@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './style.css';
 import axios from 'axios';
+import querystring from 'querystring';
 import HomeGeneratorRecipeTemplate from './RecipeTemplate/index.js';
-const backendurl = "http://localhost:8000";
+const backendurl = "http://localhost:8000/nomnoms/api";
 
 
 //this function will hit a path that brings up a random recipe.
@@ -13,6 +14,7 @@ All methods to potentially speed up the button results should be explored.
 */
 
 const HomeGenerator = () => {
+    const [ingredients, setIngredients] = useState(null)
     const [content, setContent] = useState(null);
     const [recipe, setRecipe] = useState(null);
     const [recipes, setRecipes] = useState([]);
@@ -29,13 +31,14 @@ const HomeGenerator = () => {
             })
     }
     const generateByIngredient = () => {
-        axios.get(`${backendurl}/recipes/${randomnum}`)
+        setIngredients(["apples", "banana"]);
+        if (ingredients != null) {
+            axios.get(`${backendurl}/recipes/byingredient/?` + querystring.stringify({'ingredients': ingredients}))
             .then(res => {
                 console.log(res.data)
-                if (res.data.name != null) {
-                    setRecipe(res.data)
-                } else generateRandomRecipe();               
+                setRecipes(res.data)
             })
+        }
     }
     const generateWeekMenu = () => {
         let recipeArray = ["1","2","3","4","5","6","7"];
